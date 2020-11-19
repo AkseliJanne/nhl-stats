@@ -13,7 +13,7 @@ function Player(props) {
     const { player } = props
     return (
         <div className={classes.root}>
-            <Typography variant="body1">{player.person.fullName}</Typography>
+            <Typography variant="body1">#{player.jerseyNumber} {player.person.fullName}, {player.position.name}</Typography>
         </div>
     )
 }

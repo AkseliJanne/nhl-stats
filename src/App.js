@@ -5,7 +5,7 @@ import { Button, Typography } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles';
 import logo from'./logos/logo.png'
 
-const API_URL = 'https://statsapi.web.nhl.com/api/v1/teams'
+const API_URL_TEAMS = 'https://statsapi.web.nhl.com/api/v1/teams'
 
 const useStyles = makeStyles({
   root: {
@@ -26,9 +26,8 @@ function App() {
 
   const classes = useStyles();
   const APICall = async () => {
-    axios.get(API_URL).then(response => {
+    axios.get(API_URL_TEAMS).then(response => {
       setTeams(response.data.teams.reverse())
-      console.log(response)
     })  
   }
 

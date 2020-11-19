@@ -15,7 +15,7 @@ function PlayerList(props) {
     const { playerList } = props
     return (
         <div>
-            {(playerList.length > 0) ? playerList.map(player => <Player player={player}></Player>) : <></>}
+            {(playerList.length > 0) ? playerList.map(player => <Player player={player} key={player.person.id}></Player>) : <></>}
         </div>
     )
 }

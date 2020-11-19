@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     }
 });
 
-const API_URL_PLAYERS = 'https://statsapi.web.nhl.com/api/v1/teams/'
+const API_URL = 'https://statsapi.web.nhl.com/api/v1/teams/'
 
 function Team(props) {
     const { team } = props
@@ -30,7 +30,7 @@ function Team(props) {
     const classes = useStyles();
 
     const APICall = async (teamID) => {
-        axios.get(API_URL_PLAYERS + teamID + "?expand=team.roster").then(response => {
+        axios.get(API_URL + teamID + "?expand=team.roster").then(response => {
             setPlayerList(response.data.teams[0].roster.roster)
         })  
       }

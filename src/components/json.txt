@@ -1,0 +1,28 @@
+abbreviation: "VGK"
+​​
+active: true
+​​
+conference: Object { id: 5, name: "Western", link: "/api/v1/conferences/5" }
+​​
+division: Object { id: 15, name: "Pacific", nameShort: "PAC", … }
+​​
+firstYearOfPlay: "2016"
+​​
+franchise: Object { franchiseId: 38, teamName: "Golden Knights", link: "/api/v1/franchises/38" }
+​​
+franchiseId: 38
+​​
+id: 54
+​​
+link: "/api/v1/teams/54"
+​​
+locationName: "Vegas"
+​​
+name: "Vegas Golden Knights"
+​​
+officialSiteUrl: "http://www.vegasgoldenknights.com/"
+​​
+shortName: "Vegas"
+​​
+teamName: "Golden Knights"
+

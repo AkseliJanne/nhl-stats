@@ -1,19 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import TeamList from './components/TeamList'
+import { Button, Typography } from '@material-ui/core/'
+import { makeStyles } from '@material-ui/core/styles';
 
 const API_URL = 'https://statsapi.web.nhl.com/api/v1/teams'
+
+const useStyles = makeStyles({
+  root: {
+    backgroundColor: 'lightblue',
+    marginTop:'-10px',
+    marginLeft:'-10px',
+  },
+});
+
+
 
 function App() {
   const [teams, setTeams] = useState([])
 
-  const APICall = async () => {
+  const classes = useStyles();
+  const APICall = () => {
     axios.get(API_URL).then(response => {
-      const teamsOrdered = response.data.teams
-      teamsOrdered.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
-      setTeams(teamsOrdered)
-      console.log(teamsOrdered)
-    })  
+      setTeams(response.data.teams.reverse())
+    })
+  }
+
+  const sortTeamsBy = (value) => {
+    const teamsSorted = teams.slice()
+    teamsSorted.sort((a, b) => (a[value] > b[value]) ? 1 : ((b[value] > a[value]) ? -1 : 0))
+    setTeams(teamsSorted)
   }
 
   useEffect(() => {
@@ -21,8 +37,10 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-      <TeamList teams={teams}/>
+    <div className={classes.root}>
+      <Button onClick={() => sortTeamsBy("name")}>SORT TEAMS BY NAME</Button>
+      <Button onClick={() => sortTeamsBy("firstYearOfPlay")}>SORT TEAMS BY FIRST YEAR OF PLAY</Button>
+      <TeamList teams={teams} />
     </div>
   );
 }

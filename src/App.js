@@ -12,6 +12,7 @@ const useStyles = makeStyles({
     backgroundColor: 'lightblue',
     marginTop:'-10px',
     marginLeft:'-10px',
+    marginRight:'-10px',
   },
   logo: {
     marginTop: '10px',

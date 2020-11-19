@@ -28,6 +28,7 @@ function App() {
   const APICall = async () => {
     axios.get(API_URL_TEAMS).then(response => {
       setTeams(response.data.teams.reverse())
+      console.log(response.data.teams.reverse())
     })  
   }
 

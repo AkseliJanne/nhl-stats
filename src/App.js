@@ -3,6 +3,7 @@ import axios from 'axios'
 import TeamList from './components/TeamList'
 import { Button, Typography } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles';
+import logo from'./logos/logo.png'
 
 const API_URL = 'https://statsapi.web.nhl.com/api/v1/teams'
 
@@ -12,6 +13,10 @@ const useStyles = makeStyles({
     marginTop:'-10px',
     marginLeft:'-10px',
   },
+  logo: {
+    marginTop: '10px',
+    marginLeft: '5px',
+  }
 });
 
 
@@ -20,10 +25,11 @@ function App() {
   const [teams, setTeams] = useState([])
 
   const classes = useStyles();
-  const APICall = () => {
+  const APICall = async () => {
     axios.get(API_URL).then(response => {
       setTeams(response.data.teams.reverse())
-    })
+      console.log(response)
+    })  
   }
 
   const sortTeamsBy = (value) => {
@@ -38,6 +44,7 @@ function App() {
 
   return (
     <div className={classes.root}>
+      <img className={classes.logo} src={logo} width="30px" height="30px"></img>
       <Button onClick={() => sortTeamsBy("name")}>SORT TEAMS BY NAME</Button>
       <Button onClick={() => sortTeamsBy("firstYearOfPlay")}>SORT TEAMS BY FIRST YEAR OF PLAY</Button>
       <TeamList teams={teams} />

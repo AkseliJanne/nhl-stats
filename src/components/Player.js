@@ -1,14 +1,15 @@
-import React, { useEffect, useState} from 'react'
-import { Typography } from '@material-ui/core'
+import React, { useEffect, useState } from 'react'
+import { Typography, Card } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
 const useStyles = makeStyles({
     root: {
-        marginLeft: '50px',
+        marginRight: '500px',
     },
-    finnish: {
-        fontWeight: 'bold',
+    card: {
+        padding: '50px',
+        width: '500px', 
     }
 });
 
@@ -16,24 +17,38 @@ const API_URL = "https://statsapi.web.nhl.com/api/v1/people/"
 
 function Player(props) {
     const classes = useStyles();
-    const { player } = props
+    const { playerID } = props
     const [person, setPerson] = useState({})
+
     const APICall = (playerID) => {
         axios.get(API_URL + playerID).then(response => {
             setPerson(response.data.people[0])
-        })    
+            console.log(response.data.people[0])
+        })
     }
 
-    useEffect(() =>  {
-        APICall(player.person.id)    
-    },[])
+    useEffect(() => {
+        if (playerID !== undefined) {
+            APICall(playerID)
+        }
+    }, [playerID])
 
     return (
         <div className={classes.root}>
-            {(person.birthCountry === "FIN") ? // if player is Finnish, use bold text
-                <Typography className={classes.finnish} variant="body1" id={player.person.id}>{person.birthCountry} #{player.jerseyNumber} {player.person.fullName}, {player.position.name}</Typography>            
-            :
-                <Typography variant="body1" id={player.person.id}>{person.birthCountry} #{player.jerseyNumber} {player.person.fullName}, {player.position.name}</Typography>
+            {person &&
+                <div>
+                    <Card className={classes.card}>
+                    <Typography variant="h5" color="primary">{person.fullName}</Typography>
+                    <Typography variant="h5" color="primary">Birth city: {person.birthCity}</Typography>
+                    <Typography variant="h5" color="primary">Birth date: {person.birthDate}</Typography>
+                    {person.captain && <Typography variant="h5" color="primary">Captain</Typography>}
+                    <Typography variant="h5" color="primary">Age: {person.currentAge}</Typography>
+                    <Typography variant="h5" color="primary">Height: {person.height}</Typography>
+                    <Typography variant="h5" color="primary">Nationality: {person.nationality}</Typography>
+                    <Typography variant="h5" color="primary">Jersey number: #{person.primaryNumber}</Typography>                                      
+       
+                    </Card>
+                </div>
             }
         </div>
     )

@@ -8,21 +8,26 @@ const useStyles = makeStyles({
         padding: '15px',
         display: 'flex',
     },
+    playerContainer: {
+        textAlign:'left',
+    }
 });
 
 function PlayerList(props) {
     const classes = useStyles();
     const { playerList } = props
-    const [ showOnePlayer, setShowOnePlayer ] = useState(false)
+    const [showOnePlayer, setShowOnePlayer] = useState(false)
+    const [playerID, setPlayerID] = useState(undefined)
 
     const generateRows = (playerList) => {
         const rows = []
-        for(var i = 0; i < playerList.length; i++) {
-            rows.push({id: playerList[i].person.id,
-                       fullName: playerList[i].person.fullName,
-                       jerseyNumber: playerList[i].jerseyNumber,
-                       position: playerList[i].position.name,
-            })    
+        for (var i = 0; i < playerList.length; i++) {
+            rows.push({
+                id: playerList[i].person.id,
+                fullName: playerList[i].person.fullName,
+                jerseyNumber: playerList[i].jerseyNumber,
+                position: playerList[i].position.name,
+            })
         }
         return rows
     }
@@ -33,14 +38,17 @@ function PlayerList(props) {
         { field: 'position', headerName: 'Position', width: 260 }
     ];
 
-    const handleRowClick  = e => {
-        const playerID = e.data.id
-        console.log(playerID)
-        setShowOnePlayer(true)
+    const handleRowClick = e => {
+        setPlayerID(e.data.id)
     }
     return (
-        <div style={{ height: 800, width: '50%' }} >
-            {playerList.length > 0 && <DataGrid rows={generateRows(playerList)} columns={columns} pageSize={playerList.length} onRowClick={handleRowClick} />}
+        <div>
+            <div className={classes.playerContainer}>
+                    {playerID !== undefined && <Player playerID={playerID}></Player>}
+            </div>           
+            <div style={{ height: 800, minWidth: '500px' }} >
+                {playerList.length > 0 && <DataGrid rows={generateRows(playerList)} columns={columns} pageSize={playerList.length} onRowClick={handleRowClick} />}
+            </div>
 
         </div>
     )

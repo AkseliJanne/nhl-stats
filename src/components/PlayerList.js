@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { DataGrid } from '@material-ui/data-grid';
 import { makeStyles } from '@material-ui/core/styles';
+import { Grid } from '@material-ui/core'
 import Player from './Player'
 
 const useStyles = makeStyles({
     root: {
-        padding: '15px',
-        display: 'flex',
+        display:'flex',
     },
     playerContainer: {
-        textAlign:'left',
+    },
+    playerListContainer: {
+        height: '1000px',
+        width: '100%',
     }
 });
 
@@ -32,26 +35,26 @@ function PlayerList(props) {
         return rows
     }
     const columns = [
-        { field: 'id', headerName: 'ID', width: 130 },
         { field: 'fullName', headerName: 'Full name', width: 260 },
         { field: 'jerseyNumber', headerName: 'Jersey number', width: 130 },
         { field: 'position', headerName: 'Position', width: 260 }
     ];
 
     const handleRowClick = e => {
+        console.log(e)
         setPlayerID(e.data.id)
     }
     return (
-        <div>
+        <div className={classes.root}>
+            <div className={classes.playerListContainer}>
+                {playerList.length > 0 && <DataGrid rows={generateRows(playerList)} columns={columns} pageSize={playerList.length} onRowClick={handleRowClick} />}
+
+            </div>
             <div className={classes.playerContainer}>
                     {playerID !== undefined && <Player playerID={playerID}></Player>}
             </div>           
-            <div style={{ height: 800, minWidth: '500px' }} >
-                {playerList.length > 0 && <DataGrid rows={generateRows(playerList)} columns={columns} pageSize={playerList.length} onRowClick={handleRowClick} />}
-            </div>
-
         </div>
-    )
+    )   
 }
 
 export default PlayerList

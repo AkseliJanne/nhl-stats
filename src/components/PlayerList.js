@@ -13,6 +13,7 @@ const useStyles = makeStyles({
     playerListContainer: {
         height: '1000px',
         width: '100%',
+        minWidth:'100px',
     }
 });
 

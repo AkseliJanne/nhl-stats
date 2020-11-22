@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Typography, Card, Button } from '@material-ui/core/'
+import { Typography, Card, Link } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles';
 import PlayerList from './PlayerList'
 import axios from 'axios'
@@ -15,8 +15,8 @@ const useStyles = makeStyles({
     conference: {
         marginLeft: '50px',
     },
-    venue: {
-        padding: '10px',
+    showRoster: {
+        marginLeft: '50px',
     }
 });
 
@@ -53,7 +53,8 @@ function Team(props) {
                 <img src={"https://assets.nhle.com/logos/nhl/svg/" + team.abbreviation + "_light.svg"} width="50px" height="50px"></img> 
                 <Typography variant="h5" className={classes.team}>{team.name}, {team.firstYearOfPlay}, {team.venue.name}</Typography> 
             </div>
-            <Typography variant="body1" className={classes.conference}>{team.conference.name} conference <Typography className={classes.showRoster} color="primary" variant="body1" id={team.id} onClick={handleClick}>{buttonText}</Typography></Typography>
+            <Typography variant="body1" className={classes.conference}>{team.conference.name} conference</Typography>
+            <Link className={classes.showRoster} color="primary" variant="body1" id={team.id} onClick={handleClick}>{buttonText}</Link>
             { (showPlayerList === true) ? <PlayerList playerList={playerList}/> : <></> } 
         </Card>
     )

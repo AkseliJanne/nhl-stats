@@ -20,7 +20,6 @@ function Player(props) {
     const [person, setPerson] = useState({})
     const APICall = (playerID) => {
         axios.get(API_URL + playerID).then(response => {
-            console.log(response.data.people[0])
             setPerson(response.data.people[0])
         })    
     }

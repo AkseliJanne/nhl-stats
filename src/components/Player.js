@@ -10,6 +10,17 @@ const useStyles = makeStyles({
     card: {
         padding: '50px',
         width: '500px',
+    },
+    table: {
+        borderCollapse: 'collapse',
+    },
+    td: {
+        border: '1px solid #dddddd',
+        textAlign: 'left',
+        padding: '8px',
+    },
+    columnTitle: {
+        fontWeight: 'bold',
     }
 });
 
@@ -24,7 +35,7 @@ function Player(props) {
         axios.get(API_URL + playerID).then(response => {
             setPerson(response.data.people[0])
         })
-        axios.get(API_URL + playerID +"/stats?stats=statsSingleSeason&season=20192020").then(response => {
+        axios.get(API_URL + playerID + "/stats?stats=statsSingleSeason&season=20192020").then(response => {
             console.log(response.data.stats[0].splits)
             setStats(response.data.stats[0].splits)
         })
@@ -51,7 +62,24 @@ function Player(props) {
                         <Typography variant="h5">Nationality: {person.nationality}</Typography>
                         <Typography variant="h5">Jersey Number: #{person.primaryNumber}</Typography>
                         <Typography variant="h5">Season 2019-2020</Typography>
-                        {stats.length > 0 && stats[0].stat.goals !== undefined && <Typography variant="h5">Goals: {stats[0].stat.goals}, Assists: {stats[0].stat.assists}</Typography>}
+                        <table className={classes.table}>
+                            <tbody>
+                                <tr className={classes.td}>
+                                    <th><Typography className={classes.columnTitle}>Games</Typography></th>
+                                    <th><Typography className={classes.columnTitle}>Goals</Typography></th>
+                                    <th><Typography className={classes.columnTitle}>Assits</Typography></th>
+                                    <th><Typography className={classes.columnTitle}>Points</Typography></th>
+                                </tr>
+                                {stats.length > 0 && stats[0].stat.goals !== undefined &&
+                                    <tr className={classes.td}>
+                                        <th>{stats[0].stat.games}</th>
+                                        <th>{stats[0].stat.goals}</th>
+                                        <th>{stats[0].stat.assists}</th>
+                                        <th>{stats[0].stat.points}</th>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
                     </Card>
                 </div>
             }

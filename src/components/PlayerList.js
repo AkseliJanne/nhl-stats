@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { DataGrid } from '@material-ui/data-grid';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography } from '@material-ui/core'
+import { Grid, Typography, Link } from '@material-ui/core'
 import Player from './Player'
 
 const useStyles = makeStyles({
@@ -33,6 +33,10 @@ function PlayerList(props) {
     const { playerList } = props
     const [playerID, setPlayerID] = useState(undefined)
 
+    const handleClick = e => {
+        const id = e.target.id
+        setPlayerID(id)
+    }
     return (
         <div className={classes.root}>
             <div className={classes.playerListContainer}>
@@ -41,15 +45,14 @@ function PlayerList(props) {
                     <th><Typography className={classes.columnTitle}>Jersey number</Typography></th>
                     <th><Typography className={classes.columnTitle}>Full name</Typography></th>
                     <th><Typography className={classes.columnTitle}>Position</Typography></th>                    
-                </tr>
-            
+                </tr>            
                 {playerList.length > 0 && playerList.map(player => 
                 <tr className={classes.td}>
                     <th>
                         <Typography>#{player.jerseyNumber}</Typography>
                     </th>
                     <th>
-                        <Typography>{player.person.fullName}</Typography>
+                        <Link><Typography onClick={handleClick} id={player.person.id}>{player.person.fullName}</Typography></Link>
                     </th>
                     <th>
                         <Typography>{player.position.name}</Typography>

@@ -44,9 +44,11 @@ function Player(props) {
                     {person.captain && <Typography variant="h5">Captain</Typography>}
                     <Typography variant="h5">Age: {person.currentAge}</Typography>
                     <Typography variant="h5">Height: {person.height}</Typography>
+                    <Typography variant="h5">Weight: {person.weight} pounds</Typography>
                     <Typography variant="h5">Nationality: {person.nationality}</Typography>
-                    <Typography variant="h5">Jersey Number: #{person.primaryNumber}</Typography>                                      
-       
+                    <Typography variant="h5">Jersey Number: #{person.primaryNumber}</Typography>      
+                              
+                
                     </Card>
                 </div>
             }

@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     playerContainer: {
     },
     playerListContainer: {
-        height: '1500px',
+        height: '750px',
         width: '100%',
         minWidth:'100px',
     }

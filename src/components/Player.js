@@ -38,14 +38,14 @@ function Player(props) {
             {person &&
                 <div>
                     <Card className={classes.card}>
-                    <Typography variant="h5" color="primary">{person.fullName}</Typography>
-                    <Typography variant="h5" color="primary">Birth city: {person.birthCity}</Typography>
-                    <Typography variant="h5" color="primary">Birth date: {person.birthDate}</Typography>
+                    <Typography variant="h5" color="primary">Name: {person.fullName}</Typography>
+                    <Typography variant="h5" color="primary">Birth City: {person.birthCity}</Typography>
+                    <Typography variant="h5" color="primary">Birth Date: {person.birthDate}</Typography>
                     {person.captain && <Typography variant="h5" color="primary">Captain</Typography>}
                     <Typography variant="h5" color="primary">Age: {person.currentAge}</Typography>
                     <Typography variant="h5" color="primary">Height: {person.height}</Typography>
                     <Typography variant="h5" color="primary">Nationality: {person.nationality}</Typography>
-                    <Typography variant="h5" color="primary">Jersey number: #{person.primaryNumber}</Typography>                                      
+                    <Typography variant="h5" color="primary">Jersey Number: #{person.primaryNumber}</Typography>                                      
        
                     </Card>
                 </div>

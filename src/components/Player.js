@@ -9,7 +9,7 @@ const useStyles = makeStyles({
     },
     card: {
         padding: '50px',
-        width: '500px', 
+        width: '500px',
     }
 });
 
@@ -19,11 +19,14 @@ function Player(props) {
     const classes = useStyles();
     const { playerID } = props
     const [person, setPerson] = useState({})
-
+    const [stats, setStats] = useState([])
     const APICall = (playerID) => {
         axios.get(API_URL + playerID).then(response => {
             setPerson(response.data.people[0])
-            console.log(response.data.people[0])
+        })
+        axios.get(API_URL + playerID +"/stats?stats=statsSingleSeason&season=20192020").then(response => {
+            console.log(response.data.stats[0].splits)
+            setStats(response.data.stats[0].splits)
         })
     }
 
@@ -38,17 +41,17 @@ function Player(props) {
             {person &&
                 <div>
                     <Card className={classes.card}>
-                    <Typography variant="h5">Name: {person.fullName}</Typography>
-                    <Typography variant="h5">Birth City: {person.birthCity}</Typography>
-                    <Typography variant="h5">Birth Date: {person.birthDate}</Typography>
-                    {person.captain && <Typography variant="h5">Captain</Typography>}
-                    <Typography variant="h5">Age: {person.currentAge}</Typography>
-                    <Typography variant="h5">Height: {person.height}</Typography>
-                    <Typography variant="h5">Weight: {person.weight} pounds</Typography>
-                    <Typography variant="h5">Nationality: {person.nationality}</Typography>
-                    <Typography variant="h5">Jersey Number: #{person.primaryNumber}</Typography>      
-                              
-                
+                        <Typography variant="h5">Name: {person.fullName}</Typography>
+                        <Typography variant="h5">Birth City: {person.birthCity}</Typography>
+                        <Typography variant="h5">Birth Date: {person.birthDate}</Typography>
+                        {person.captain && <Typography variant="h5">Captain</Typography>}
+                        <Typography variant="h5">Age: {person.currentAge}</Typography>
+                        <Typography variant="h5">Height: {person.height}</Typography>
+                        <Typography variant="h5">Weight: {person.weight} pounds</Typography>
+                        <Typography variant="h5">Nationality: {person.nationality}</Typography>
+                        <Typography variant="h5">Jersey Number: #{person.primaryNumber}</Typography>
+                        <Typography variant="h5">Season 2019-2020</Typography>
+                        {stats.length > 0 && stats[0].stat.goals !== undefined && <Typography variant="h5">Goals: {stats[0].stat.goals}, Assists: {stats[0].stat.assists}</Typography>}
                     </Card>
                 </div>
             }

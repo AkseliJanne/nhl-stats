@@ -9,10 +9,9 @@ const useStyles = makeStyles({
         display:'flex',
     },
     playerContainer: {
+        padding: '50px'
     },
     playerListContainer: {
-        width: '100%',
-        minWidth:'100px',
         marginLeft: '50px',
     },
     table: {

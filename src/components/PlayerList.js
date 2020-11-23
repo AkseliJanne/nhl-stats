@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     playerContainer: {
     },
     playerListContainer: {
-        height: '1000px',
+        height: '1500px',
         width: '100%',
         minWidth:'100px',
     }
@@ -52,7 +52,7 @@ function PlayerList(props) {
 
             </div>
             <div className={classes.playerContainer}>
-                    {playerID !== undefined && <Player playerID={playerID}></Player>}
+                {playerID !== undefined && <Player playerID={playerID}></Player>}
             </div>           
         </div>
     )   

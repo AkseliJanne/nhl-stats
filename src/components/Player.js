@@ -9,7 +9,7 @@ const useStyles = makeStyles({
     },
     card: {
         padding: '5px',
-        width: '500px',
+        width: '350px',
     },
     table: {
         borderCollapse: 'collapse',

@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
   logo: {
     marginTop: '10px',
-    marginLeft: '5px',
+    marginLeft: '15px',
   },
   standingsContainer: {
     textAlign: 'right',
@@ -55,8 +55,9 @@ function App() {
   return (
     <div className={classes.root}>
       <Router>
-        <Link to="/"><img className={classes.logo} src={logo} width="30px" height="30px"></img></Link>
-        <Link to="/standings"><Button>Standings</Button>
+      <img className={classes.logo} src={logo} width="30px" height="30px"></img>
+        <Link to="/"><Button>HOME</Button></Link>
+        <Link to="/standings"><Button>STANDINGS</Button>
         </Link>
         <Switch>
           <Route path="/standings">

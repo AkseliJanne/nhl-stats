@@ -60,7 +60,7 @@ function PlayerList(props) {
                         <Typography variant="body2">#{player.jerseyNumber}</Typography>
                     </th>
                     <th>
-                        <Link><Typography variant="body2" onClick={handleClick} id={player.person.id}>{player.person.fullName}</Typography></Link>
+                        <Link><Typography variant="body2" color="primary" onClick={handleClick} id={player.person.id}>{player.person.fullName}</Typography></Link>
                     </th>
                     <th>
                         <Typography variant="body2">{player.position.type}</Typography>

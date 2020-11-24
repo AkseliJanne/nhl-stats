@@ -1,22 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import TeamList from './components/TeamList'
+import Standings from './components/Standings'
 import { Button, Typography } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles';
-import logo from'./logos/logo.png'
+import logo from './logos/logo.png'
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Switch,
+} from 'react-router-dom';
 
 const API_URL_TEAMS = 'https://statsapi.web.nhl.com/api/v1/teams'
 
 const useStyles = makeStyles({
   root: {
     backgroundColor: 'lightblue',
-    marginTop:'-10px',
-    marginLeft:'-10px',
-    marginRight:'-10px',
+    marginTop: '-10px',
+    marginLeft: '-10px',
+    marginRight: '-10px',
   },
   logo: {
     marginTop: '10px',
     marginLeft: '5px',
+  },
+  standingsContainer: {
+    textAlign: 'right',
   }
 });
 
@@ -29,7 +39,7 @@ function App() {
   const APICall = async () => {
     axios.get(API_URL_TEAMS).then(response => {
       setTeams(response.data.teams.reverse())
-    })  
+    })
   }
 
   const sortTeamsBy = (value) => {
@@ -44,10 +54,22 @@ function App() {
 
   return (
     <div className={classes.root}>
-      <img className={classes.logo} src={logo} width="30px" height="30px"></img>
-      <Button onClick={() => sortTeamsBy("name")}>SORT TEAMS BY NAME</Button>
-      <Button onClick={() => sortTeamsBy("firstYearOfPlay")}>SORT TEAMS BY FIRST YEAR OF PLAY</Button>
-      <TeamList teams={teams} />
+      <Router>
+        <Link to="/"><img className={classes.logo} src={logo} width="30px" height="30px"></img></Link>
+        <Link to="/standings"><Button>Standings</Button>
+        </Link>
+        <Switch>
+          <Route path="/standings">
+            <Standings />
+          </Route>
+          <Route path="/">
+            <Button onClick={() => sortTeamsBy("name")}>SORT TEAMS BY NAME</Button>
+            <Button onClick={() => sortTeamsBy("firstYearOfPlay")}>SORT TEAMS BY FIRST YEAR OF PLAY</Button>
+            <TeamList teams={teams} />
+          </Route>
+        </Switch>
+      </Router>
+
     </div>
   );
 }

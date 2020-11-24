@@ -8,7 +8,7 @@ const useStyles = makeStyles({
         marginRight: '500px',
     },
     card: {
-        padding: '50px',
+        padding: '5px',
         width: '500px',
     },
     table: {
@@ -20,7 +20,6 @@ const useStyles = makeStyles({
         padding: '8px',
     },
     columnTitle: {
-        fontWeight: 'bold',
     }
 });
 
@@ -52,23 +51,23 @@ function Player(props) {
             {person &&
                 <div>
                     <Card className={classes.card}>
-                        <Typography variant="h5">Name: {person.fullName}</Typography>
-                        <Typography variant="h5">Birth City: {person.birthCity}</Typography>
-                        <Typography variant="h5">Birth Date: {person.birthDate}</Typography>
-                        {person.captain && <Typography variant="h5">Captain</Typography>}
-                        <Typography variant="h5">Age: {person.currentAge}</Typography>
-                        <Typography variant="h5">Height: {person.height}</Typography>
-                        <Typography variant="h5">Weight: {person.weight} pounds</Typography>
-                        <Typography variant="h5">Nationality: {person.nationality}</Typography>
-                        <Typography variant="h5">Jersey Number: #{person.primaryNumber}</Typography>
-                        <Typography variant="h5">Season 2019-2020</Typography>
+                        <Typography variant="body2">Name: {person.fullName}</Typography>
+                        <Typography variant="body2">Birth City: {person.birthCity}</Typography>
+                        <Typography variant="body2">Birth Date: {person.birthDate}</Typography>
+                        {person.captain && <Typography variant="body2">Captain</Typography>}
+                        <Typography variant="body2">Age: {person.currentAge}</Typography>
+                        <Typography variant="body2">Height: {person.height}</Typography>
+                        <Typography variant="body2">Weight: {person.weight} pounds</Typography>
+                        <Typography variant="body2">Nationality: {person.nationality}</Typography>
+                        <Typography variant="body2">Jersey Number: #{person.primaryNumber}</Typography>
+                        <Typography variant="body2">Season 2019-2020</Typography>
                         <table className={classes.table}>
                             <tbody>
                                 <tr className={classes.td}>
-                                    <th><Typography className={classes.columnTitle}>Games</Typography></th>
-                                    <th><Typography className={classes.columnTitle}>Goals</Typography></th>
-                                    <th><Typography className={classes.columnTitle}>Assits</Typography></th>
-                                    <th><Typography className={classes.columnTitle}>Points</Typography></th>
+                                    <th><Typography variant="body2" className={classes.columnTitle}>Games</Typography></th>
+                                    <th><Typography variant="body2" className={classes.columnTitle}>Goals</Typography></th>
+                                    <th><Typography variant="body2" className={classes.columnTitle}>Assits</Typography></th>
+                                    <th><Typography variant="body2" className={classes.columnTitle}>Points</Typography></th>
                                 </tr>
                                 {stats.length > 0 && stats[0].stat.goals !== undefined &&
                                     <tr className={classes.td}>

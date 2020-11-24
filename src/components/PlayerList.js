@@ -9,7 +9,7 @@ const useStyles = makeStyles({
         display:'flex',
     },
     playerContainer: {
-        padding: '50px'
+        padding: '50px',
     },
     playerListContainer: {
         marginLeft: '50px',
@@ -44,8 +44,9 @@ function PlayerList(props) {
         return goalies.concat(defensemen).concat(forwards)
     }
     return (
-        <div className={classes.root}>
+        <div className={classes.root}>              
             <div className={classes.playerListContainer}>
+            {playerID !== undefined && <Player playerID={playerID}></Player>}    
                 <table className={classes.table}>
                 <tbody>
                 <tr className={classes.td}>
@@ -56,21 +57,18 @@ function PlayerList(props) {
                 {playerList.length > 0 && getSortedPlayerList(playerList).map(player => 
                 <tr className={classes.td} key={player.person.id}>
                     <th>
-                        <Typography>#{player.jerseyNumber}</Typography>
+                        <Typography variant="body2">#{player.jerseyNumber}</Typography>
                     </th>
                     <th>
-                        <Link><Typography onClick={handleClick} id={player.person.id}>{player.person.fullName}</Typography></Link>
+                        <Link><Typography variant="body2" onClick={handleClick} id={player.person.id}>{player.person.fullName}</Typography></Link>
                     </th>
                     <th>
-                        <Typography>{player.position.type}</Typography>
+                        <Typography variant="body2">{player.position.type}</Typography>
                     </th>                
                 </tr>)}
                 </tbody>
                 </table>
             </div>
-            <div className={classes.playerContainer}>
-                {playerID !== undefined && <Player playerID={playerID}></Player>}
-            </div>           
         </div>
     )   
 }

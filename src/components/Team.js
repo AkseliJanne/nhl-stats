@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Typography, Card, Link } from '@material-ui/core/'
+import { Typography, Card, Link, Button } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles';
 import PlayerList from './PlayerList'
 import axios from 'axios'
@@ -54,7 +54,7 @@ function Team(props) {
                 <Typography variant="h5" className={classes.team}>{team.name}, {team.firstYearOfPlay}, {team.venue.name}</Typography> 
             </div>
             <Typography variant="body1" className={classes.conference}>{team.conference.name} conference</Typography>
-            <Typography variant="body1" color="primary"><Link className={classes.showRoster} id={team.id} onClick={handleClick}>{buttonText}</Link></Typography>
+            <Link id={team.id} onClick={handleClick}><Button className={classes.showRoster} color="primary">{buttonText}</Button></Link>
             { (showPlayerList === true) ? <PlayerList playerList={playerList}/> : <></> } 
         </Card>
     )

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import TeamList from './components/TeamList'
 import Standings from './components/Standings'
-import { Button, Typography } from '@material-ui/core/'
+import { Button, Container } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles';
 import logo from './logos/logo.png'
 import {
@@ -55,13 +55,15 @@ function App() {
   return (
     <div className={classes.root}>
       <Router>
-      <img className={classes.logo} src={logo} width="30px" height="30px"></img>
+        <img className={classes.logo} src={logo} width="30px" height="30px"></img>
         <Link to="/"><Button>HOME</Button></Link>
         <Link to="/standings"><Button>STANDINGS</Button>
         </Link>
         <Switch>
           <Route path="/standings">
-            <Standings />
+            <Container maxWidth="sm">
+              <Standings />
+            </Container>
           </Route>
           <Route path="/">
             <Button onClick={() => sortTeamsBy("name")}>SORT TEAMS BY NAME</Button>

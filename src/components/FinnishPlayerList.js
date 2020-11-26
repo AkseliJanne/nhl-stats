@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Typography, Button } from '@material-ui/core'
+import { Typography, Container } from '@material-ui/core'
 import axios from 'axios'
 
 function FinnishPlayerList() {
@@ -36,11 +36,13 @@ function FinnishPlayerList() {
     })
     return (
         <div>
+            <Container maxWidth="sm">
             <Typography variant="h3">Finnish player list</Typography>
             {/* <Button onClick={() => console.log(finnishPlayers)}>test</Button> */}
             <ul>
             {finnishPlayers.length > 0 && finnishPlayers.map(finnishPlayer => <li>{finnishPlayer.fullName}</li>)}
             </ul>
+            </Container>
         </div>
     )
 }

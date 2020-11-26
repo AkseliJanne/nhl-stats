@@ -68,9 +68,7 @@ function App() {
           </Route>
           <Route path="/standings">
             <Header />
-            <Container maxWidth="sm">
-              <Standings />
-            </Container>
+            <Standings />
           </Route>
           <Route path="/">
             <Header />

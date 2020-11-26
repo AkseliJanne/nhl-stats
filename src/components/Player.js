@@ -35,7 +35,6 @@ function Player(props) {
             setPerson(response.data.people[0])
         })
         axios.get(API_URL + playerID + "/stats?stats=statsSingleSeason&season=20192020").then(response => {
-            console.log(response.data.stats[0].splits)
             setStats(response.data.stats[0].splits)
         })
     }

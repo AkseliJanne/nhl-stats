@@ -36,6 +36,7 @@ function Header() {
          <img src={nhllogo} width="50px" height="50px" className={classes.logo}></img>            
           <Link href="/"><Button className={classes.button}>HOME</Button></Link>
           <Link href="/standings"><Button className={classes.button}>STANDINGS</Button></Link>
+          <Link href="/finnishplayers"><Button className={classes.button}>FINNISH PLAYERS</Button></Link>
         </Toolbar>
       </AppBar>
     </div>

@@ -3,6 +3,7 @@ import axios from 'axios'
 import TeamList from './components/TeamList'
 import Standings from './components/Standings'
 import Header from './components/Header'
+import FinnishPlayerList from './components/FinnishPlayerList'
 import { Button, Container } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -60,13 +61,11 @@ function App() {
   return (
     <div className={classes.root}>
       <Router>
-        {/* <img className={classes.logo} src={logo} width="30px" height="30px"></img>
-        <Link to="/"><Button className={classes.button}>HOME</Button></Link>
-        <Link to="/standings"><Button className={classes.button}>STANDINGS</Button> 
-                </Link>
-        */}
-
         <Switch>
+          <Route path="/finnishplayers">
+            <Header />
+            <FinnishPlayerList />
+          </Route>
           <Route path="/standings">
             <Header />
             <Container maxWidth="sm">

@@ -12,37 +12,51 @@ function FinnishPlayerList() {
                 const roster = teams[i].roster.roster
                 for (var j = 0; j < roster.length; j++) {
                     const id = roster[j].person.id
-                    promises.push(axios.get("https://statsapi.web.nhl.com/api/v1/people/"+ id))
+                    promises.push(axios.get("https://statsapi.web.nhl.com/api/v1/people/" + id))
                 }
             }
             Promise.all(promises)
-            .then(responses => {
-                var finns = []  
-                for (var i = 0; i < responses.length; i++) {
-                    const person = responses[i].data.people[0]
-                    const birthCountry = responses[i].data.people[0].birthCountry
-                    if (birthCountry === "FIN") {
-                        finns.push(person)
+                .then(responses => {
+                    var finns = []
+                    for (var i = 0; i < responses.length; i++) {
+                        const person = responses[i].data.people[0]
+                        const birthCountry = responses[i].data.people[0].birthCountry
+                        if (birthCountry === "FIN") {
+                            finns.push(person)
+                        }
                     }
-                }
-                console.log(finns)
-                setFinnishPlayers(finns)
-            });
-
+                    console.log(finns)
+                    setFinnishPlayers(finns)
+                });
         })
     }
     useEffect(() => {
         getFinnishPlayers()
-    })
+    }, [])
     return (
         <div>
-            <Container maxWidth="sm">
-            <Typography variant="h3">Finnish player list</Typography>
-            {/* <Button onClick={() => console.log(finnishPlayers)}>test</Button> */}
-            <ul>
-            {finnishPlayers.length > 0 && finnishPlayers.map(finnishPlayer => <li>{finnishPlayer.fullName}</li>)}
-            </ul>
-            </Container>
+                <table className="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Full name</th>
+                            <th scope="col">Birth date</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Team</th>
+                            <th scope="col">Height</th>
+                            <th scope="col">Weight</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {finnishPlayers.length > 0 && finnishPlayers.map((finnishPlayer, i) => <tr key={i}>
+                        <td scope="col">{finnishPlayer.fullName}</td>   
+                        <td scope="col">{finnishPlayer.birthDate}</td>   
+                        <td scope="col">{finnishPlayer.currentAge}</td>   
+                        <td scope="col">{finnishPlayer.currentTeam.name}</td>   
+                        <td scope="col">{finnishPlayer.height}</td>   
+                        <td scope="col">{finnishPlayer.weight}</td>   
+                    </tr>)}
+                    </tbody>
+                </table>
         </div>
     )
 }

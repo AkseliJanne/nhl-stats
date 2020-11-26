@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import TeamList from './components/TeamList'
 import Standings from './components/Standings'
+import Header from './components/Header'
 import { Button, Container } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles';
-import logo from './logos/logo.png'
+
+
 import {
   BrowserRouter as Router,
   Link,
@@ -16,10 +18,13 @@ const API_URL_TEAMS = 'https://statsapi.web.nhl.com/api/v1/teams'
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: 'lightblue',
     marginTop: '-10px',
     marginLeft: '-10px',
     marginRight: '-10px',
+  },
+  button: {
+    color: 'white',
+    fontWeight: 'bold',
   },
   logo: {
     marginTop: '10px',
@@ -55,17 +60,21 @@ function App() {
   return (
     <div className={classes.root}>
       <Router>
-        <img className={classes.logo} src={logo} width="30px" height="30px"></img>
-        <Link to="/"><Button>HOME</Button></Link>
-        <Link to="/standings"><Button>STANDINGS</Button>
-        </Link>
+        {/* <img className={classes.logo} src={logo} width="30px" height="30px"></img>
+        <Link to="/"><Button className={classes.button}>HOME</Button></Link>
+        <Link to="/standings"><Button className={classes.button}>STANDINGS</Button> 
+                </Link>
+        */}
+
         <Switch>
           <Route path="/standings">
+            <Header />
             <Container maxWidth="sm">
               <Standings />
             </Container>
           </Route>
           <Route path="/">
+            <Header />
             <Button onClick={() => sortTeamsBy("name")}>SORT TEAMS BY NAME</Button>
             <Button onClick={() => sortTeamsBy("firstYearOfPlay")}>SORT TEAMS BY FIRST YEAR OF PLAY</Button>
             <TeamList teams={teams} />

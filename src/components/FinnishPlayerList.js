@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     root: {
-        height: '100vh',
+        height: '100%',
         background: "radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(17,19,80,1) 0%, rgba(9,22,62,1) 0%, rgba(20,63,110,1) 0%, rgba(17,49,94,1) 29%, rgba(17,9,75,1) 53%, rgba(3,162,208,1) 81%, rgba(2,174,219,1) 84%, rgba(2,174,219,1) 84%, rgba(34,110,167,1) 91%)",
     },
     circle: {

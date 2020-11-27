@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+
+const useStyles = makeStyles({
+    root: {
+        background: "radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,22,62,1) 13%, rgba(20,63,110,1) 28%, rgba(17,49,94,1) 29%, rgba(17,9,75,1) 43%, rgba(3,162,208,1) 81%, rgba(2,174,219,1) 84%, rgba(2,174,219,1) 84%, rgba(34,110,167,1) 91%)",
+    },
+});
 
 function Standings() {
+    const classes = useStyles()
     const [standingTeams, setStandingTeams] = useState([])
     const getStandings = () => {
         axios.get("https://statsapi.web.nhl.com/api/v1/standings").then(response => {
@@ -29,7 +38,8 @@ function Standings() {
         getStandings()
     })
     return (
-        <div>
+        <div className={classes.root}>
+            <Container>
             <table className="table table-dark">
                 <thead>
                     <tr>
@@ -55,6 +65,7 @@ function Standings() {
 
                 </tbody>
             </table>
+            </Container>
         </div>
     )
 }

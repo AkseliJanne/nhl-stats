@@ -36,7 +36,6 @@ function FinnishPlayerList() {
                             finns.push(person)
                         }
                     }
-                    console.log(finns)
                     setFinnishPlayers(finns)
                 });
         })

@@ -7,6 +7,7 @@ import nhllogo from '../logos/logo.png'
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    height: '70px',
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -31,7 +32,7 @@ function Header() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" className={classes.appBar}>
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
          <img src={nhllogo} width="50px" height="50px" className={classes.logo}></img>            
           <Link href="/"><Button className={classes.button}>HOME</Button></Link>

@@ -1,9 +1,20 @@
 import React, { useEffect } from 'react'
-import { Typography, Container } from '@material-ui/core'
+import { CircularProgress } from '@material-ui/core'
 import axios from 'axios'
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles({
+    circle: {
+        display: 'block',
+        margin: '0 auto',
+    },
+});
 
 function FinnishPlayerList() {
     const [finnishPlayers, setFinnishPlayers] = React.useState([])
+    const classes = useStyles();
+
     const getFinnishPlayers = () => {
         axios.get("https://statsapi.web.nhl.com/api/v1/teams?expand=team.roster").then(response => {
             const teams = response.data.teams
@@ -35,7 +46,7 @@ function FinnishPlayerList() {
     }, [])
     return (
         <div>
-                <table className="table table-dark">
+                <table className="table table-dark"> 
                     <thead>
                         <tr>
                             <th scope="col">Full name</th>
@@ -57,6 +68,7 @@ function FinnishPlayerList() {
                     </tr>)}
                     </tbody>
                 </table>
+                {finnishPlayers.length === 0 && <CircularProgress className={classes.circle}/>}
         </div>
     )
 }

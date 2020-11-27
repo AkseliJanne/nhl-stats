@@ -22,6 +22,8 @@ const useStyles = makeStyles({
     marginTop: '-10px',
     marginLeft: '-10px',
     marginRight: '-10px',
+    background: "radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,22,62,1) 13%, rgba(20,63,110,1) 28%, rgba(17,49,94,1) 29%, rgba(17,9,75,1) 43%, rgba(3,162,208,1) 81%, rgba(2,174,219,1) 84%, rgba(2,174,219,1) 84%, rgba(34,110,167,1) 91%)"
+
   },
   button: {
     color: 'white',
@@ -33,6 +35,13 @@ const useStyles = makeStyles({
   },
   standingsContainer: {
     textAlign: 'right',
+  },
+  buttonContainer: {
+    textAlign: 'left',
+  },
+  button: {
+    color: 'white',
+    fontWeight: 'bold',
   }
 });
 
@@ -72,9 +81,13 @@ function App() {
           </Route>
           <Route path="/">
             <Header />
-            <Button onClick={() => sortTeamsBy("name")}>SORT TEAMS BY NAME</Button>
-            <Button onClick={() => sortTeamsBy("firstYearOfPlay")}>SORT TEAMS BY FIRST YEAR OF PLAY</Button>
-            <TeamList teams={teams} />
+            <Container>
+              <div className={classes.buttonContainer}>
+                <Button className={classes.button} onClick={() => sortTeamsBy("name")}>SORT TEAMS BY NAME</Button>
+                <Button className={classes.button} onClick={() => sortTeamsBy("firstYearOfPlay")}>SORT TEAMS BY FIRST YEAR OF PLAY</Button>
+              </div>
+              <TeamList teams={teams} />
+            </Container>
           </Route>
         </Switch>
       </Router>

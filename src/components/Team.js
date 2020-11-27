@@ -6,6 +6,9 @@ import axios from 'axios'
 
 const useStyles = makeStyles({
     root: {
+        backgroundColor: 'white'
+    },
+    container: {
         padding: '15px',
         display: 'flex',
     },
@@ -48,15 +51,15 @@ function Team(props) {
         }
     }
     return (
-        <Card>
-            <div className={classes.root}>
+        <div className={classes.root}>
+            <div className={classes.container}>
                 <img src={"https://assets.nhle.com/logos/nhl/svg/" + team.abbreviation + "_light.svg"} width="50px" height="50px"></img> 
                 <Typography variant="h5" className={classes.team}>{team.name}, {team.firstYearOfPlay}, {team.venue.name}</Typography> 
             </div>
             <Typography variant="body1" className={classes.conference}>{team.conference.name} conference</Typography>
             <Link id={team.id} onClick={handleClick}><Button className={classes.showRoster} color="primary">{buttonText}</Button></Link>
             { (showPlayerList === true) ? <PlayerList playerList={playerList}/> : <></> } 
-        </Card>
+        </div>
     )
 }
 
